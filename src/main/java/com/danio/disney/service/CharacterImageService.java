@@ -1,5 +1,6 @@
 package com.danio.disney.service;
 
+import com.danio.disney.exception.CharacterNotFoundException;
 import com.danio.disney.imageresources.CharacterImage;
 import com.danio.disney.repository.CharacterImageRepository;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,11 @@ public class CharacterImageService {
         this.characterImageRepository = characterImageRepository;
     }
 
+    public CharacterImage findCharacterImageById(Long id){
+        CharacterImage characterImage = characterImageRepository.findById(id).orElseThrow(() -> new CharacterNotFoundException(id));
+        return characterImage;
+    }
+
     public CharacterImage saveCharacterImage(MultipartFile file){
         CharacterImage characterImage = new CharacterImage();
         try {
@@ -26,5 +32,9 @@ public class CharacterImageService {
         characterImage.setType(file.getContentType());
         characterImageRepository.save(characterImage);
         return characterImage;
+    }
+
+    public void deleteCharacterImageById(Long id){
+        characterImageRepository.deleteById(id);
     }
 }

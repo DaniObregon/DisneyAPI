@@ -1,6 +1,7 @@
 package com.danio.disney.controller;
 
 import com.danio.disney.dto.MovieDTO;
+import com.danio.disney.model.GenreChoose;
 import com.danio.disney.model.Movie;
 import com.danio.disney.service.MovieService;
 import org.springframework.http.HttpStatus;

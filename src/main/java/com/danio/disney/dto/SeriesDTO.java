@@ -1,5 +1,6 @@
 package com.danio.disney.dto;
 
+import com.danio.disney.model.GenreChoose;
 import com.danio.disney.model.Series;
 import lombok.Data;
 
@@ -12,6 +13,7 @@ public class SeriesDTO {
     private Date date;
     private int rating;
     private Long imageId;
+    private GenreChoose genreChoose;
 
     public static SeriesDTO from(Series series){
         SeriesDTO seriesDTO = new SeriesDTO();
@@ -20,6 +22,7 @@ public class SeriesDTO {
         seriesDTO.setDate(series.getDate());
         seriesDTO.setRating(series.getRating());
         seriesDTO.setImageId(series.getSeriesImage().getId());
+        seriesDTO.setGenreChoose(series.getGenreChoose());
         return seriesDTO;
     }
 }

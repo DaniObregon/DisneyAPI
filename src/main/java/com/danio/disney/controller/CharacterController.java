@@ -23,16 +23,31 @@ public class CharacterController {
     }
 
     @PostMapping
-    public ResponseEntity<Character> addCharacter(@PathVariable MultipartFile file, Character character) {
+    public ResponseEntity<CharacterDTO> addCharacter(@PathVariable MultipartFile file, Character character) {
         if (Objects.nonNull(file)) characterService.saveCharacter(character, file);
-        return new ResponseEntity<>(character, HttpStatus.OK);
+        return new ResponseEntity<>(CharacterDTO.from(character), HttpStatus.OK);
     }
 
     @GetMapping
     public ResponseEntity<List<CharacterDTO>> getCharacters(){
         List<Character> characters = characterService.findAllCharacters();
-        List<CharacterDTO> characterDTOS = new ArrayList<>();
-        characterDTOS = characters.stream().map(CharacterDTO :: from).collect(Collectors.toList());
+        List<CharacterDTO> characterDTOS = characters.stream()
+                .map(CharacterDTO :: from)
+                .collect(Collectors.toList());
         return new ResponseEntity<>(characterDTOS, HttpStatus.OK);
     }
+
+    @DeleteMapping(value = "{id}")
+    public ResponseEntity<CharacterDTO> deleteCharacter(@PathVariable final Long id){
+        Character character = characterService.deleteCharacterById(id);
+        return new ResponseEntity<>(CharacterDTO.from(character), HttpStatus.OK);
+    }
+
+//    @DeleteMapping(value = "{id}")
+//    public ResponseEntity<Void> deleteCharacter(@PathVariable Long id){
+//        this.characterService.deleteCharacterById(id);
+//        return ResponseEntity.noContent().build();
+//    }
+
+
 }

@@ -6,7 +6,6 @@ import javax.persistence.*;
 
 @Data
 @Entity
-//@Table(name = "GenreImageTable")
 public class GenreImage {
 
     @Id

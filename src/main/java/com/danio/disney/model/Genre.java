@@ -9,7 +9,6 @@ import java.util.List;
 
 @Data
 @Entity
-//@Table(name = "GenreTable")
 public class Genre {
 
     @Id
@@ -22,9 +21,9 @@ public class Genre {
     @JoinColumn(name = "genre_image_fk")
     private GenreImage genreImage;
 
-    @OneToMany(cascade = CascadeType.ALL)//, mappedBy = "genre"
-    private List<Movie> relatedMovies = new ArrayList<>();
-
-    @OneToMany(cascade = CascadeType.ALL)//, mappedBy = "genre"
-    private List<Series> relatedSeries = new ArrayList<>();
+//    @OneToMany(cascade = CascadeType.ALL)//, mappedBy = "genre"
+//    private List<Movie> relatedMovies = new ArrayList<>();
+//
+//    @OneToMany(cascade = CascadeType.ALL)//, mappedBy = "genre"
+//    private List<Series> relatedSeries = new ArrayList<>();
 }
